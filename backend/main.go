@@ -21,12 +21,15 @@ func main() {
 
 	// repositories
 	brandRepository := repositories.NewBrandRepository(db)
+	voucherRepository := repositories.NewVoucherRepository(db)
 
 	// services
 	brandService := services.NewBrandService(brandRepository)
+	voucherService := services.NewVoucherService(voucherRepository, brandRepository)
 
 	// handlers
 	brandHandler := handlers.NewBrandHandler(brandService)
+	voucherHandler := handlers.NewVoucherHandler(voucherService)
 
 	api := router.Group("/api/v1")
 
@@ -34,13 +37,13 @@ func main() {
 	api.Post("/brand", brandHandler.CreateBrand)
 
 	// voucher
-	// api.Post("/voucher", voucherHandler.CreateVoucher)
-	// api.Get("/voucher", voucherHandler.GetDetailVoucher)
+	api.Post("/voucher", voucherHandler.CreateVoucher)
+	// api.Get("/voucher", voucherHandler.GetVoucher)
 	// api.Get("/voucher/brand", voucherHandler.GetAllVoucherByBrand)
 
 	// transaction redemption
 	// api.Post("/transaction/redemption", transactionHandler.CreateRedemption)
-	// api.Get("/transaction/redemption", transactionHandler.GetDetailRedemption)
+	// api.Get("/transaction/redemption", transactio nHandler.GetDetailRedemption)
 	
 	if err := router.Listen(fmt.Sprintf("%s:%s", cfg.AppHost, cfg.AppPort)); err != nil {
 		log.Println("Error: ", err)
