@@ -80,6 +80,10 @@ func (s *voucherService) GetAllVoucherByBrand(requestSearch request.SearchVouche
 		return []response.VoucherResponse{}, err
 	}
 
+	if len(listVoucher) == 0 {
+		return []response.VoucherResponse{}, nil
+	}
+
 	listVoucherResponse := response.ListVoucherResponseFormatter(listVoucher)
 
 	return listVoucherResponse, nil
