@@ -35,7 +35,7 @@ func (s *brandService) CreateBrand(requestData request.CreateBrandRequest) (resp
 		return response.BrandResponse{}, err
 	}
 
-	brandResponseFormatter := response.BrandResponseFormatter(brand)
+	brandResponse := response.BrandResponseFormatter(brand)
 
-	return brandResponseFormatter, nil
+	return brandResponse, nil
 }
