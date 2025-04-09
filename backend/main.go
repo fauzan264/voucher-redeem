@@ -38,8 +38,8 @@ func main() {
 
 	// voucher
 	api.Post("/voucher", voucherHandler.CreateVoucher)
-	// api.Get("/voucher", voucherHandler.GetVoucher)
-	// api.Get("/voucher/brand", voucherHandler.GetAllVoucherByBrand)
+	api.Get("/voucher", voucherHandler.GetVoucher)
+	api.Get("/voucher/brand", voucherHandler.GetAllVoucherByBrand)
 
 	// transaction redemption
 	// api.Post("/transaction/redemption", transactionHandler.CreateRedemption)

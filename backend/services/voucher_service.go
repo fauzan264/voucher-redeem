@@ -18,6 +18,8 @@ type voucherService struct {
 
 type VoucherService interface {
 	CreateVoucher(requestData request.CreateVoucherRequest) (response.VoucherResponse, error)
+	GetVoucher(requestSearch request.SearchVoucher) (response.VoucherResponse, error)
+	GetAllVoucherByBrand(requestSearch request.SearchVoucherByBrand) ([]response.VoucherResponse, error)
 }
 
 func NewVoucherService(
@@ -56,4 +58,29 @@ func (s *voucherService) CreateVoucher(requestData request.CreateVoucherRequest)
 	voucherResponse := response.VoucherResponseFormatter(voucher)
 
 	return voucherResponse, nil
+}
+
+func (s *voucherService) GetVoucher(requestSearch request.SearchVoucher) (response.VoucherResponse, error) {
+	voucher, err := s.voucherRepository.GetVoucher(requestSearch)
+	if err != nil {
+		return response.VoucherResponse{}, err
+	}
+
+	brand, _ := s.brandRepository.GetBrand(voucher.BrandID)
+	voucher.Brand = brand
+
+	voucherResponse := response.VoucherResponseFormatter(voucher)
+
+	return voucherResponse, nil
+}
+
+func (s *voucherService) GetAllVoucherByBrand(requestSearch request.SearchVoucherByBrand) ([]response.VoucherResponse, error) {
+	listVoucher, err := s.voucherRepository.GetVoucherByBrand(requestSearch)
+	if err != nil {
+		return []response.VoucherResponse{}, err
+	}
+
+	listVoucherResponse := response.ListVoucherResponseFormatter(listVoucher)
+
+	return listVoucherResponse, nil
 }

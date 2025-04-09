@@ -45,6 +45,7 @@ func ListVoucherResponseFormatter(listVoucher []models.Voucher) []VoucherRespons
 	var listVoucherResponse []VoucherResponse
 	for _, voucher := range listVoucher {
 		voucherResponseFormatter := VoucherResponseFormatter(voucher)
+		
 		listVoucherResponse = append(listVoucherResponse, voucherResponseFormatter)
 	}
 
