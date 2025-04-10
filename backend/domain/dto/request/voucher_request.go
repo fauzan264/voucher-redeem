@@ -18,9 +18,9 @@ type CreateVoucherRequest struct {
 }
 
 type SearchVoucher struct {
-	VoucherID		uuid.UUID 	`query:"voucher_id" validate:"required"`
+	VoucherID		uuid.UUID 	`query:"id" validate:"required"`
 }
 
 type SearchVoucherByBrand struct {
-	BrandID			uuid.UUID 	`query:"brand_id" validate:"required"`
+	BrandID			uuid.UUID 	`query:"id" validate:"required"`
 }

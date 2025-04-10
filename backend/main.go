@@ -24,17 +24,25 @@ func main() {
 	brandRepository := repositories.NewBrandRepository(db)
 	voucherRepository := repositories.NewVoucherRepository(db)
 	userRepository := repositories.NewUserRepository(db)
+	redemptionRepository := repositories.NewRedemptionRepository(db)
 
 	// services
 	brandService := services.NewBrandService(brandRepository)
 	voucherService := services.NewVoucherService(voucherRepository, brandRepository)
 	authService := services.NewAuthService(userRepository)
 	userService := services.NewUserService(userRepository)
+	redemptionService := services.NewRedemptionService(
+		redemptionRepository,
+		voucherRepository,
+		brandRepository,
+		userRepository,
+	)
 
 	// handlers
 	brandHandler := handlers.NewBrandHandler(brandService)
 	voucherHandler := handlers.NewVoucherHandler(voucherService)
 	authHandler := handlers.NewAuthHandler(authService)
+	redemptionHandler := handlers.NewRedemptionHandler(redemptionService)
 
 	// middleware
 	authMiddleware := middleware.AuthMiddleware(userService)
@@ -55,8 +63,8 @@ func main() {
 	api.Get("/voucher/brand", authMiddleware, voucherHandler.GetAllVoucherByBrand)
 
 	// transaction redemption
-	// api.Post("/transaction/redemption", transactionHandler.CreateRedemption)
-	// api.Get("/transaction/redemption", transactio nHandler.GetDetailRedemption)
+	api.Post("/transaction/redemption", authMiddleware, redemptionHandler.CreateRedemption)
+	api.Get("/transaction/redemption", authMiddleware, redemptionHandler.GetDetailRedemption)
 	
 	if err := router.Listen(fmt.Sprintf("%s:%s", cfg.AppHost, cfg.AppPort)); err != nil {
 		log.Println("Error: ", err)

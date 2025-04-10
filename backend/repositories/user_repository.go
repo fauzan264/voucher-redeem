@@ -14,6 +14,7 @@ type UserRepository interface {
 	CreateUser(user models.User) (models.User, error)
 	GetUserByID(id uuid.UUID) (models.User, error)
 	GetUserByEmail(email string) (models.User, error)
+	UpdateUser(user models.User) (models.User, error)
 }
 
 func NewUserRepository(db *gorm.DB) *userRepository {
@@ -42,6 +43,15 @@ func (r *userRepository) GetUserByID(id uuid.UUID) (models.User, error) {
 func (r *userRepository) GetUserByEmail(email string) (models.User, error) {
 	var user models.User
 	err := r.db.Where("email = ?", email).First(&user).Error
+	if err != nil {
+		return user, err
+	}
+
+	return user, nil
+}
+
+func (r *userRepository) UpdateUser(user models.User) (models.User, error) {
+	err := r.db.Save(&user).Error
 	if err != nil {
 		return user, err
 	}

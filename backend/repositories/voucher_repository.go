@@ -15,6 +15,7 @@ type VoucherRepository interface {
 	CreateVoucher(voucher models.Voucher) (models.Voucher, error)
 	GetVoucher(requestSearch request.SearchVoucher) (models.Voucher, error)
 	GetVoucherByBrand(requestSearch request.SearchVoucherByBrand) ([]models.Voucher, error)
+	UpdateVoucher(voucher models.Voucher) (models.Voucher, error)
 }
 
 func NewVoucherRepository(db *gorm.DB) *voucherRepository {
@@ -62,4 +63,13 @@ func (r *voucherRepository) GetVoucherByBrand(requestSearch request.SearchVouche
 	}
 
 	return listVoucher, nil
+}
+
+func (r *voucherRepository) UpdateVoucher(voucher models.Voucher) (models.Voucher, error) {
+	err := r.db.Save(&voucher).Error
+	if err != nil {
+		return voucher, err
+	}
+
+	return voucher, nil
 }
