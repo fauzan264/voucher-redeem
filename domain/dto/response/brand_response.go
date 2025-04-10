@@ -1,7 +1,7 @@
 package response
 
 import (
-	"github.com/fauzan264/voucher-redeem/backend/domain/models"
+	"github.com/fauzan264/voucher-redeem/domain/models"
 	"github.com/google/uuid"
 )
 

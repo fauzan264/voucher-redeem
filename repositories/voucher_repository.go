@@ -1,8 +1,8 @@
 package repositories
 
 import (
-	"github.com/fauzan264/voucher-redeem/backend/domain/dto/request"
-	"github.com/fauzan264/voucher-redeem/backend/domain/models"
+	"github.com/fauzan264/voucher-redeem/domain/dto/request"
+	"github.com/fauzan264/voucher-redeem/domain/models"
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 )

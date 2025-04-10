@@ -3,11 +3,11 @@ package middleware
 import (
 	"strings"
 
-	"github.com/fauzan264/voucher-redeem/backend/constants"
-	"github.com/fauzan264/voucher-redeem/backend/domain/dto/request"
-	"github.com/fauzan264/voucher-redeem/backend/domain/dto/response"
-	"github.com/fauzan264/voucher-redeem/backend/services"
-	"github.com/fauzan264/voucher-redeem/backend/utils"
+	"github.com/fauzan264/voucher-redeem/constants"
+	"github.com/fauzan264/voucher-redeem/domain/dto/request"
+	"github.com/fauzan264/voucher-redeem/domain/dto/response"
+	"github.com/fauzan264/voucher-redeem/services"
+	"github.com/fauzan264/voucher-redeem/utils"
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/uuid"

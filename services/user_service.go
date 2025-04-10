@@ -1,9 +1,9 @@
 package services
 
 import (
-	"github.com/fauzan264/voucher-redeem/backend/domain/dto/request"
-	"github.com/fauzan264/voucher-redeem/backend/domain/dto/response"
-	"github.com/fauzan264/voucher-redeem/backend/repositories"
+	"github.com/fauzan264/voucher-redeem/domain/dto/request"
+	"github.com/fauzan264/voucher-redeem/domain/dto/response"
+	"github.com/fauzan264/voucher-redeem/repositories"
 )
 
 type userService struct {

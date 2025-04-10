@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/fauzan264/voucher-redeem/backend/domain/models"
+	"github.com/fauzan264/voucher-redeem/domain/models"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )

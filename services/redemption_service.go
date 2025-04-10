@@ -4,11 +4,11 @@ import (
 	"errors"
 	"time"
 
-	"github.com/fauzan264/voucher-redeem/backend/domain/dto/request"
-	"github.com/fauzan264/voucher-redeem/backend/domain/dto/response"
-	"github.com/fauzan264/voucher-redeem/backend/domain/models"
-	"github.com/fauzan264/voucher-redeem/backend/helpers"
-	"github.com/fauzan264/voucher-redeem/backend/repositories"
+	"github.com/fauzan264/voucher-redeem/domain/dto/request"
+	"github.com/fauzan264/voucher-redeem/domain/dto/response"
+	"github.com/fauzan264/voucher-redeem/domain/models"
+	"github.com/fauzan264/voucher-redeem/helpers"
+	"github.com/fauzan264/voucher-redeem/repositories"
 	"github.com/google/uuid"
 )
 

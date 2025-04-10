@@ -1,4 +1,4 @@
-module github.com/fauzan264/voucher-redeem/backend
+module github.com/fauzan264/voucher-redeem
 
 go 1.24.0
 

@@ -3,11 +3,11 @@ package handlers
 import (
 	"strings"
 
-	"github.com/fauzan264/voucher-redeem/backend/constants"
-	"github.com/fauzan264/voucher-redeem/backend/domain/dto/request"
-	"github.com/fauzan264/voucher-redeem/backend/domain/dto/response"
-	"github.com/fauzan264/voucher-redeem/backend/helpers"
-	"github.com/fauzan264/voucher-redeem/backend/services"
+	"github.com/fauzan264/voucher-redeem/constants"
+	"github.com/fauzan264/voucher-redeem/domain/dto/request"
+	"github.com/fauzan264/voucher-redeem/domain/dto/response"
+	"github.com/fauzan264/voucher-redeem/helpers"
+	"github.com/fauzan264/voucher-redeem/services"
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
 )

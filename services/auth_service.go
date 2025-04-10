@@ -3,12 +3,12 @@ package services
 import (
 	"time"
 
-	"github.com/fauzan264/voucher-redeem/backend/constants"
-	"github.com/fauzan264/voucher-redeem/backend/domain/dto/request"
-	"github.com/fauzan264/voucher-redeem/backend/domain/dto/response"
-	"github.com/fauzan264/voucher-redeem/backend/domain/models"
-	"github.com/fauzan264/voucher-redeem/backend/repositories"
-	"github.com/fauzan264/voucher-redeem/backend/utils"
+	"github.com/fauzan264/voucher-redeem/constants"
+	"github.com/fauzan264/voucher-redeem/domain/dto/request"
+	"github.com/fauzan264/voucher-redeem/domain/dto/response"
+	"github.com/fauzan264/voucher-redeem/domain/models"
+	"github.com/fauzan264/voucher-redeem/repositories"
+	"github.com/fauzan264/voucher-redeem/utils"
 	"github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"
 )

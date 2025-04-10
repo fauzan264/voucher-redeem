@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/fauzan264/voucher-redeem/backend/config"
-	"github.com/fauzan264/voucher-redeem/backend/handlers"
-	"github.com/fauzan264/voucher-redeem/backend/middleware"
-	"github.com/fauzan264/voucher-redeem/backend/repositories"
-	"github.com/fauzan264/voucher-redeem/backend/services"
+	"github.com/fauzan264/voucher-redeem/config"
+	"github.com/fauzan264/voucher-redeem/handlers"
+	"github.com/fauzan264/voucher-redeem/middleware"
+	"github.com/fauzan264/voucher-redeem/repositories"
+	"github.com/fauzan264/voucher-redeem/services"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )
