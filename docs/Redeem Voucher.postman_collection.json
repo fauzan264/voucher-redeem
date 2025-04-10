@@ -1,0 +1,353 @@
+{
+	"info": {
+		"_postman_id": "755ad9dc-9f29-4a71-b14d-184c9c266ccc",
+		"name": "Redeem Voucher",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11479060"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"console.log(jsonData.data.token)",
+									"// postman.setCollectionVariable(\"token\", jsonData.data.token);",
+									"pm.collectionVariables.set('token', jsonData.data.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"testuser@example.com\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test User\",\n    \"email\": \"testuser@example.com\",\n    \"password\": \"password\",\n    \"is_admin\": false\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Brand",
+			"item": [
+				{
+					"name": "Create Brand",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test Brand\",\n    \"description\": \"This is a brand used for testing purposes.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/brand",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"brand"
+							]
+						},
+						"description": "Generated from cURL: curl --request POST \\\n  --url http://localhost:8000/api/v1/brand \\\n  --header 'Content-Type: application/json' \\\n  --header 'User-Agent: insomnia/11.0.1' \\\n  --data '{\n\t\"name\": \"unilever\",\n\t\"description\": \"unilever brand\"\n}'"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Voucher",
+			"item": [
+				{
+					"name": "Get Voucher",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/voucher?id=68f8c3ca-bfbe-429a-a98b-1cf8f395522a",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"voucher"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "68f8c3ca-bfbe-429a-a98b-1cf8f395522a"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --request GET \\\n  --url 'http://localhost:8000/api/v1/voucher?voucher_id=3b303bbe-c6ed-4c70-b835-92c87c280bbe' \\\n  --header 'User-Agent: insomnia/11.0.1'"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Voucher By Brand",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/voucher/brand?id=332a3cdb-1ca6-4238-bb45-e20a67ce1186",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"voucher",
+								"brand"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "332a3cdb-1ca6-4238-bb45-e20a67ce1186"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --request GET \\\n  --url 'http://localhost:8000/api/v1/voucher/brand?brand_id=f428bddf-cc3b-4e03-895e-bfc15fb1a7f3' \\\n  --header 'User-Agent: insomnia/11.0.1'"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Voucher",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"brand_id\": \"332a3cdb-1ca6-4238-bb45-e20a67ce1186\",\n    \"code\": \"TESTVOUCHER100\",\n    \"name\": \"Test Voucher 100 Points\",\n    \"description\": \"This is a test voucher for 100 points.\",\n    \"cost_in_points\": 100,\n    \"stock\": 5,\n    \"valid_from\": \"2025-01-01T00:00:00Z\",\n    \"valid_until\": \"2025-12-31T23:59:59Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/voucher",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"voucher"
+							]
+						},
+						"description": "Generated from cURL: curl --request POST \\\n  --url http://localhost:8000/api/v1/voucher \\\n  --header 'Content-Type: application/json' \\\n  --header 'User-Agent: insomnia/11.0.1' \\\n  --data '{\n\t\"brand_id\": \"f428bddf-cc3b-4e03-895e-bfc15fb1a7f3\",\n\t\"code\": \"TOKOPEDIA1002\",\n\t\"name\": \"Promo Unilever Tokopedia 100\",\n\t\"description\": \"Promo Unilever Tokopedia 100\",\n\t\"cost_in_points\": 100,\n\t\"stock\": 10,\n\t\"valid_from\": \"2025-04-09T00:00:00Z\",\n\t\"valid_until\": \"2025-04-12T00:00:00Z\"\n}'"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaction Redemption",
+			"item": [
+				{
+					"name": "Create Transaction Redemption",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"redemption_items\": [\n        {\n            \"voucher_id\": \"68f8c3ca-bfbe-429a-a98b-1cf8f395522a\",\n            \"quantity\": 2\n        },\n        {\n            \"voucher_id\": \"6821a841-c991-42ec-a281-881533990898\",\n            \"quantity\": 2\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/transaction/redemption",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transaction",
+								"redemption"
+							]
+						},
+						"description": "Generated from cURL: curl --request POST \\\n  --url http://localhost:8000/api/v1/transaction/redemption \\\n  --header 'Content-Type: application/json' \\\n  --header 'User-Agent: insomnia/11.0.1' \\\n  --data '{\n\t\"name\": \"unilever\",\n\t\"description\": \"unilever brand\"\n}'"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transaction Redemption",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"unilever\",\n\t\"description\": \"unilever brand\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/transaction/redemption?transactionId=75fc7d31-ff78-48fc-9df4-9a117387eb57",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transaction",
+								"redemption"
+							],
+							"query": [
+								{
+									"key": "transactionId",
+									"value": "75fc7d31-ff78-48fc-9df4-9a117387eb57"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl --request GET \\\n  --url http://localhost:8000/api/v1/transaction/redemption \\\n  --header 'Content-Type: application/json' \\\n  --header 'User-Agent: insomnia/11.0.1' \\\n  --data '{\n\t\"name\": \"unilever\",\n\t\"description\": \"unilever brand\"\n}'"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "localhost:8000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
