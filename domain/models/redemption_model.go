@@ -10,7 +10,7 @@ type Redemption struct {
 	ID					uuid.UUID			`gorm:"type:char(36);primaryKey"`
 	CustomerID			uuid.UUID			`gorm:"type:char(36);not null"`
 	Code 				string  			`gorm:"type:varchar(100);unique"`
-	PointUsed			int					`gorm:"type:int"`
+	TotalPoint			int					`gorm:"type:int"`
 	RedeemedAt			time.Time			`gorm:"type:datetime"`
 
 	Customer			User				`gorm:"foreignKey:CustomerID;references:ID"`

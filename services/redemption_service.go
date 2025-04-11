@@ -43,6 +43,7 @@ func (s *redemptionService) CreateTransactionRedemption(requestData request.Crea
 		return response.RedemptionResponse{}, errors.New("User Not Found")
 	}
 	
+	var totalPoint int
 	var redemptionItemsData []models.RedemptionItem
 	for _, redemptionItem := range requestData.TransactionItemsRedemptionRequest {
 		voucher, err := s.voucherRepository.GetVoucher(request.SearchVoucher{VoucherID: redemptionItem.VoucherID})
@@ -52,27 +53,29 @@ func (s *redemptionService) CreateTransactionRedemption(requestData request.Crea
 
 		brand, _ := s.brandRepository.GetBrand(voucher.BrandID)
 
-		subTotalItem := redemptionItem.Quantity * voucher.CostInPoints
+		subTotalPoint := redemptionItem.Quantity * voucher.CostInPoints
 
 		redemptionItemData := models.RedemptionItem{
 			ID: uuid.New(),
 			VoucherID: redemptionItem.VoucherID,
 			Quantity: redemptionItem.Quantity,
-			SubTotalPoint: subTotalItem,
+			SubTotalPoint: subTotalPoint,
 		}
 
 		redemptionItemData.Voucher = voucher
 		redemptionItemData.Voucher.Brand = brand
-		customer.TotalPoints += subTotalItem
+		totalPoint += subTotalPoint
 
 		redemptionItemsData = append(redemptionItemsData, redemptionItemData)
 	}
+
+	customer.TotalPoints += totalPoint
 
 	redemptionData := models.Redemption{
 		ID: uuid.New(),
 		CustomerID: customer.ID,
 		Code: helpers.GenerateTransactionRedeemCode(),
-		PointUsed: 0,
+		TotalPoint: totalPoint,
 		RedeemedAt: time.Now(),
 	}
 

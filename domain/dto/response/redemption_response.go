@@ -10,7 +10,7 @@ import (
 type RedemptionResponse struct {
 	ID					uuid.UUID					`json:"id"`
 	Code 				string  					`json:"code"`
-	PointUsed			int							`json:"point_used"`
+	TotalPoint			int							`json:"point_used"`
 	RedeemedAt			time.Time					`json:"redeem_at"`
 
 	Customer			UserResponse				`json:"customer"`
@@ -52,7 +52,7 @@ func RedemptionResponseFormatter(redemption models.Redemption) RedemptionRespons
 	redemptionResponse := RedemptionResponse{
 		ID: redemption.ID,
 		Code: redemption.Code,
-		PointUsed: redemption.PointUsed,
+		TotalPoint: redemption.TotalPoint,
 		RedeemedAt: redemption.RedeemedAt,
 	}
 
